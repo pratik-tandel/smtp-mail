@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Contact Form</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+        <script>
+    function sendEmail() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+
+      Email.send({
+        SecureToken: "5f88f305-f662-4533-8631-40077075e1c0",
+        To: "pratiksem5@gmail.com",
+        From: "pratiktandel1998@gmail.com",
+        Subject: "New Message from Contact Form",
+        Body: `Name: ${name}<br>Email: ${email}<br><br>${message}`
+      }).then(
+        message => {
+          if (message === "OK") {
+            alert("Email sent successfully!");
+            document.getElementById('contactForm').reset();
+          } else {
+            alert("Failed to send email. Please try again later.");
+          }
+        }
+      );
+    }
+  </script>
+    </head>
+    <body>
+        <h1>Contact Form</h1>
+        <form id="contactForm">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" required><br><br>
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" required><br><br>
+            <label for="message">Message:</label><br>
+            <textarea id="message" rows="4" required></textarea><br><br>
+            <input type="button" value="Send Email" onclick="sendEmail()">
+        </form>
+    </body>
+</html>
